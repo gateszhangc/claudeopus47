@@ -4,4 +4,4 @@ resources:
   - ../../base
 images:
   - name: registry.144.91.77.245.sslip.io/claudeopus47
-    newTag: 812c908fec466bdb9f32f5f2a3ed8008832ce05a
+    newTag: 03498312bbf3a5d08bb24161a91d31363471bd9c
