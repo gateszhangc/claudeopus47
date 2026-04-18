@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: claudeopus47
+  namespace: argocd
+spec:
+  description: Claude Opus 4.7 website managed from the application repository
+  sourceRepos:
+    - https://github.com/gateszhangc/claudeopus47.git
+  destinations:
+    - namespace: claudeopus47
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"

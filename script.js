@@ -1,41 +1,66 @@
 const topbar = document.querySelector("[data-topbar]");
-const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
-const wallpaperCards = Array.from(document.querySelectorAll(".wallpaper-card"));
-const resultsCount = document.querySelector("[data-results-count]");
+const navLinks = Array.from(document.querySelectorAll(".nav a"));
+const sections = Array.from(document.querySelectorAll("main section[id]"));
+const revealNodes = Array.from(document.querySelectorAll("[data-reveal]"));
 const yearNode = document.querySelector("#current-year");
-
-const updateResults = (filter) => {
-  let visible = 0;
-
-  wallpaperCards.forEach((card) => {
-    const tags = (card.dataset.tags || "").split(" ");
-    const matches = filter === "all" || tags.includes(filter);
-    card.hidden = !matches;
-    if (matches) visible += 1;
-  });
-
-  if (resultsCount) {
-    resultsCount.textContent = `Showing ${visible} wallpaper${visible === 1 ? "" : "s"}`;
-  }
-};
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    filterButtons.forEach((entry) => entry.classList.remove("is-active"));
-    button.classList.add("is-active");
-    updateResults(button.dataset.filter || "all");
-  });
-});
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 if (yearNode) {
-  yearNode.textContent = new Date().getFullYear();
+  yearNode.textContent = String(new Date().getFullYear());
 }
 
-const handleScroll = () => {
+const setScrolledState = () => {
   if (!topbar) return;
-  topbar.classList.toggle("is-scrolled", window.scrollY > 12);
+  topbar.classList.toggle("is-scrolled", window.scrollY > 18);
 };
 
-window.addEventListener("scroll", handleScroll, { passive: true });
-handleScroll();
-updateResults("all");
+const syncActiveNav = (id) => {
+  navLinks.forEach((link) => {
+    const active = link.getAttribute("href") === `#${id}`;
+    link.classList.toggle("is-active", active);
+    if (active) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+};
+
+if (reducedMotion.matches) {
+  revealNodes.forEach((node) => node.classList.add("is-visible"));
+} else {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  revealNodes.forEach((node) => revealObserver.observe(node));
+}
+
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible?.target?.id) {
+      syncActiveNav(visible.target.id);
+    }
+  },
+  {
+    threshold: [0.35, 0.55, 0.75],
+    rootMargin: "-10% 0px -40% 0px"
+  }
+);
+
+sections.forEach((section) => sectionObserver.observe(section));
+
+window.addEventListener("scroll", setScrolledState, { passive: true });
+setScrolledState();
+syncActiveNav("overview");

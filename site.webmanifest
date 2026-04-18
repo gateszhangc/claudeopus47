@@ -1,19 +1,19 @@
 {
-  "name": "Artemis II Wallpaper",
-  "short_name": "Artemis II",
-  "description": "Independent editorial collection of Artemis II wallpapers using publicly released NASA imagery with source credit.",
+  "name": "Claude Opus 4.7 Review",
+  "short_name": "Opus 4.7",
+  "description": "Independent editorial review of Claude Opus 4.7 for coding, AI agents, and knowledge work.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#050912",
-  "theme_color": "#050912",
+  "background_color": "#f3eee4",
+  "theme_color": "#121017",
   "icons": [
     {
-      "src": "/assets/brand/favicon.png",
-      "sizes": "256x256",
+      "src": "assets/brand/favicon.png",
+      "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/assets/brand/apple-touch-icon.png",
+      "src": "assets/brand/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
     }

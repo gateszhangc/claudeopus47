@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: claudeopus47-preview
+  labels:
+    app.kubernetes.io/name: claudeopus47
+    app.kubernetes.io/part-of: claudeopus47
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: claudeopus47.144.91.77.245.sslip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: claudeopus47
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - claudeopus47.144.91.77.245.sslip.io
+      secretName: claudeopus47-preview-tls
