@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: cloudflare-api-token
+  namespace: claudeopus47
+spec:
+  encryptedData:
+    api-token: AgCdcNLzpop6i9w4pfJm9LDOlEREtFH+MDpGbBqz7MNOYBK3fBOwe2JSbDev6jsNKqnX9rkdq+zoFLYe+iwdNw8qSlv3CR1Xrzv8EdBB0dNsuoVqz8Q1AkBfiqQccNforczPK0P7kqvoBhcJ0jkJl7JdXdoidLK5Os3K2cM8DIhykbH+8jswFmv+0QiruY47CXVDsnuqgE8lt0JeqfsVU3y5ktVRpDSdgP/fmzhDmH6jxfkQ6w/yFP1Rwu3LQEmuyseHS9hfRYefLhDtpKG+VZEEAOGHGXQcO21ykLm1kjz+OE/nYo+pl55Fm3oGkm+VtmlMXg5jCXev90AT6QfK7zFXRv0GmJxImp17sVza9Ds8OAOdGmkEe9IXKT70OgLDRpou5Zo0JhnvI6XtwcxHhOUfiVCgaGtdDyfs6Q74cf/z4g+gfB1e4/e282jFCNjnYMJTWeAZI6/EsZUl20bHr9fAQs8ESVfUu5LKFc69pZdasbvCPTrGWl7He4T8LNplccFGwJkZxgh9eUqVQMOdG5LrSJID8SeNql7zmTw5g5P7cewHYa5F38pePE0WSwRlji5o0pOLWhfho9KWwi0oIY+gxTR2ahe8GaLrIEh5/TlhLcKjA5k8nInlRZbNPvsfiwmpPjdyBExxYCLUoL8iIK+WTMFB9gnBYVl+w+KkLrdeM0iNX1r1E1WPGSZlOcx9wrXrusQtOW1GsrKtHcdBCC7tOr50ardoAYt2wdwUbYCh3gj2TijjFs/b
+  template:
+    metadata:
+      name: cloudflare-api-token
+      namespace: claudeopus47

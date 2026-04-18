@@ -6,8 +6,7 @@ metadata:
     app.kubernetes.io/name: claudeopus47
     app.kubernetes.io/part-of: claudeopus47
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    cert-manager.io/issue-temporary-certificate: "true"
+    cert-manager.io/issuer: letsencrypt-dns-prod
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:

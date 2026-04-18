@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: claudeopus47
 resources:
   - namespace.yaml
+  - cloudflare-api-token.sealed.yaml
+  - issuer.yaml
   - registry-pull-secret.yaml
   - deployment.yaml
   - service.yaml
